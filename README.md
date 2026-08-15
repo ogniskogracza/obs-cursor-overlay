@@ -6,7 +6,7 @@ Steps to download and install:
 4. In order to add it to your OBS Studio follow the below instructions:
   - `README[ENG]` or/and YouTube video: `https://youtu.be/FqBYmjNP8xw`
     
-Note: YouTube videos do not cover Python installation on your device so you might need to refer to the README for this part.
+Note: YouTube videos do not cover Python installation on your device so you might need to refer to the README[ENG] for this part.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -18,4 +18,4 @@ Kroki aby pobrać i zainstalować:
 4. W celu dodania skryptu do OBS Studio podąrzaj za poniższymi instrukcjami:
   - `README[PL]` lub/i wideo na YouTube: `https://youtu.be/O9Bqi5Vt_zQ`
 
-Note: Filmy na YouTube nie omawiają instalacji Python na twoim urządzeniu, w tym celu będziesz musiał/a zajrzeć do pliku README.
+Note: Filmy na YouTube nie omawiają instalacji Python na twoim urządzeniu, w tym celu będziesz musiał/a zajrzeć do pliku README[PL].
