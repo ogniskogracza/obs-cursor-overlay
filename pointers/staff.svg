@@ -1,0 +1,79 @@
+<svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+
+    <!--
+        POINTER ICON CONVENTION
+        - viewBox is always "0 0 90 90"
+        - the tip (top edge of the crystal orb) sits at local (8,8)
+          via the <g transform> below
+    -->
+
+    <defs>
+
+        <linearGradient id="woodGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#c99a5b"/>
+            <stop offset="45%" stop-color="#8a5a2b"/>
+            <stop offset="100%" stop-color="#5c3a1a"/>
+        </linearGradient>
+
+        <radialGradient id="orbGradient" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="35%" stop-color="#bff4ff"/>
+            <stop offset="65%" stop-color="#35cfff"/>
+            <stop offset="100%" stop-color="#087fc1"/>
+        </radialGradient>
+
+        <filter id="staffGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="2.8" result="blur"/>
+            <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+    </defs>
+
+    <g transform="translate(8 8) rotate(-34)">
+
+        <!-- Wooden rod, gnarled/branch-like taper -->
+        <path
+            d="
+                M -1 9
+                Q -2.2 20 -1.6 34
+                Q -2.8 48 -2 62
+                Q -3 76 -2.2 82
+                L 2.2 82
+                Q 3 76 2 62
+                Q 2.8 48 1.6 34
+                Q 2.2 20 1 9
+                Z
+            "
+            fill="url(#woodGradient)"
+            stroke="#3a250f"
+            stroke-width="1.2"
+            stroke-linejoin="round"
+        />
+
+        <!-- Branch knots -->
+        <ellipse cx="-2" cy="34" rx="1.4" ry="1" fill="#4a2f14" opacity="0.8"/>
+        <ellipse cx="2.4" cy="58" rx="1.5" ry="1.1" fill="#4a2f14" opacity="0.8"/>
+
+        <!-- Wood grain lines -->
+        <path d="M -1.3 15 Q 0 21 -1 27" stroke="#3a250f" stroke-width="0.6" fill="none" opacity="0.55"/>
+        <path d="M 1.6 44 Q 0.5 50 1.4 56" stroke="#3a250f" stroke-width="0.6" fill="none" opacity="0.55"/>
+        <path d="M -1.8 66 Q -0.6 72 -1.6 78" stroke="#3a250f" stroke-width="0.6" fill="none" opacity="0.55"/>
+
+        <!-- Bronze socket band holding the orb -->
+        <ellipse cx="0" cy="8.5" rx="3.4" ry="2.3" fill="#d4a13d" stroke="#7a5518" stroke-width="0.9"/>
+
+        <!-- Orb glow -->
+        <circle cx="0" cy="5" r="5.5" fill="#20cfff" opacity="0.45" filter="url(#staffGlow)"/>
+
+        <!-- Crystal orb -->
+        <circle cx="0" cy="5" r="5.5" fill="url(#orbGradient)" stroke="#063c5c" stroke-width="1.2"/>
+
+        <!-- Orb highlight -->
+        <circle cx="-2" cy="3" r="1.5" fill="#ffffff" opacity="0.85"/>
+
+    </g>
+
+</svg>

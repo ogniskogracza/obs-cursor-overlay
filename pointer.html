@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+    html, body {
+
+        margin: 0;
+        padding: 0;
+
+        width: 100%;
+        height: 100%;
+
+        overflow: hidden;
+
+        background: transparent;
+
+    }
+
+
+    /*
+        The pointer container.
+
+        Width and height are set dynamically from
+        pointer_config.json.
+    */
+
+    #pointer {
+
+        position: absolute;
+
+        width: 90px;
+        height: 90px;
+
+        pointer-events: none;
+
+        opacity: 0;
+
+        transform: translate(0, 0);
+
+        transition:
+            opacity 0.45s ease-in-out;
+
+
+        /*
+            Default values.
+
+            These are replaced when pointer_config.json
+            is received from pointer.py.
+        */
+
+        --glow-color:
+            rgba(70, 190, 255, 0.8);
+
+        --glow-min:
+            3px;
+
+        --glow-max:
+            10px;
+
+        --glow-speed:
+            2.6s;
+
+        /*
+            How "deep" the blur-style pulse dips at its low
+            point, as a fraction of --glow-min / --glow-max.
+            1.0 = no dip (glow stays at full strength).
+            Lower = dips further toward dark between pulses.
+            Overridden per cursor via the optional "trough"
+            field in cursor_config.json; defaults to 0.55.
+        */
+        --glow-trough:
+            0.55;
+
+        /*
+            Alpha multiplier applied to --glow-color at the
+            low point of the blur-style pulse (0.55 above only
+            shrinks the RADIUS -- a 0-radius drop-shadow is
+            still a solid, fully opaque silhouette, so the glow
+            never actually disappeared without this).
+
+            1.0 = no fade, glow stays fully opaque even at the
+                  low point (this is the old, default behaviour).
+            0.0 = glow fades to fully invisible at the low point.
+
+            Overridden per cursor via the optional
+            "trough_opacity" field in cursor_config.json;
+            defaults to 1.
+        */
+        --glow-color-peak:
+            rgba(70, 190, 255, 0.8);
+
+        --glow-color-trough:
+            rgba(70, 190, 255, 0.8);
+
+    }
+
+
+    /*
+        ------------------------------------------------------
+        GLOW STYLE: "blur" (default)
+
+        The original drop-shadow glow. --glow-min / --glow-max
+        are the blur radius (standard deviation) of the shadow.
+        ------------------------------------------------------
+    */
+
+    #pointer.visible.style-blur {
+
+        opacity: 1;
+
+        animation:
+            glowPulse
+            var(--glow-speed)
+            ease-in-out
+            infinite;
+
+    }
+
+
+    /*
+        A single drop-shadow dilutes as its blur radius grows,
+        so "strength" and "spread" can't be controlled
+        independently -- a bigger max just fades away, it
+        never looks *brighter*.
+
+        Instead this stacks FOUR drop-shadows at once, spaced
+        between --glow-min and --glow-max. Each one is a full,
+        undiluted layer of --glow-color, so near the shape they
+        overlap and compound into a strong, solid glow, while
+        the outermost layer (at --glow-max) is what actually
+        determines how far the glow reaches before fading out.
+
+        --glow-min : strength guaranteed close to the shape
+        --glow-max : distance at which the glow is weakest
+    */
+
+    @keyframes glowPulse {
+
+        0%, 100% {
+
+            filter:
+                drop-shadow(
+                    0 0
+                    calc(var(--glow-min) * var(--glow-trough))
+                    var(--glow-color-trough)
+                )
+                drop-shadow(
+                    0 0
+                    calc(
+                        (
+                            var(--glow-min) +
+                            (var(--glow-max) - var(--glow-min)) * 0.35
+                        ) * var(--glow-trough)
+                    )
+                    var(--glow-color-trough)
+                )
+                drop-shadow(
+                    0 0
+                    calc(
+                        (
+                            var(--glow-min) +
+                            (var(--glow-max) - var(--glow-min)) * 0.7
+                        ) * var(--glow-trough)
+                    )
+                    var(--glow-color-trough)
+                )
+                drop-shadow(
+                    0 0
+                    calc(var(--glow-max) * var(--glow-trough))
+                    var(--glow-color-trough)
+                );
+
+        }
+
+        50% {
+
+            filter:
+                drop-shadow(
+                    0 0
+                    var(--glow-min)
+                    var(--glow-color-peak)
+                )
+                drop-shadow(
+                    0 0
+                    calc(
+                        var(--glow-min) +
+                        (var(--glow-max) - var(--glow-min)) * 0.35
+                    )
+                    var(--glow-color-peak)
+                )
+                drop-shadow(
+                    0 0
+                    calc(
+                        var(--glow-min) +
+                        (var(--glow-max) - var(--glow-min)) * 0.7
+                    )
+                    var(--glow-color-peak)
+                )
+                drop-shadow(
+                    0 0
+                    var(--glow-max)
+                    var(--glow-color-peak)
+                );
+
+        }
+
+    }
+
+
+    /*
+        ------------------------------------------------------
+        GLOW STYLE: "halo"
+
+        A soft radial-gradient disc behind the icon.
+        --glow-min / --glow-max are read as a DIAMETER here
+        (e.g. "60px" / "250px"), not a blur radius, so large
+        values actually produce a large visible glow area
+        instead of being diluted away like a Gaussian blur.
+        ------------------------------------------------------
+    */
+
+    #pointer.visible.style-halo {
+
+        opacity: 1;
+
+        /*
+            No drop-shadow in this mode -- the halo element
+            below does all the glowing.
+        */
+        filter: none;
+
+    }
+
+
+    #pointer-halo {
+
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        width: var(--glow-min);
+        height: var(--glow-min);
+
+        transform: translate(-50%, -50%);
+
+        border-radius: 50%;
+
+        pointer-events: none;
+
+        opacity: 0;
+
+        background:
+            radial-gradient(
+                circle,
+                var(--glow-color) 0%,
+                transparent 70%
+            );
+
+    }
+
+
+    #pointer.visible.style-halo #pointer-halo {
+
+        opacity: 1;
+
+        animation:
+            haloPulse
+            var(--glow-speed)
+            ease-in-out
+            infinite;
+
+    }
+
+
+    @keyframes haloPulse {
+
+        0%, 100% {
+
+            width: var(--glow-min);
+            height: var(--glow-min);
+
+        }
+
+        50% {
+
+            width: var(--glow-max);
+            height: var(--glow-max);
+
+        }
+
+    }
+
+
+    /*
+        The SVG fills the pointer container.
+        Sits above the halo so the halo reads as glow
+        behind the artwork, not on top of it.
+    */
+
+    #pointer-icon {
+
+        position: relative;
+
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+    }
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="pointer">
+
+    <div id="pointer-halo"></div>
+
+    <img
+        id="pointer-icon"
+        alt=""
+    >
+
+</div>
+
+
+<script>
+
+
+// ============================================================
+// ELEMENTS
+// ============================================================
+
+const pointer =
+    document.getElementById("pointer");
+
+const pointerIcon =
+    document.getElementById("pointer-icon");
+
+
+// ============================================================
+// DEFAULT CONFIGURATION
+// ============================================================
+
+let pointerConfig = {
+
+    pointer_width: 90,
+    pointer_height: 90,
+
+    fade_duration: "0.45s",
+
+    hide_delay: 5.0,
+
+    output_width: 1920,
+    output_height: 1080,
+
+    tip_x: 8,
+    tip_y: 8
+
+};
+
+
+// ============================================================
+// COLOR HELPER
+//
+// Parses any valid CSS color string using the browser's own
+// color parser (via a throwaway canvas), then returns a new
+// rgba() string with the alpha scaled by "multiplier".
+// Used to derive a faded "trough" color from the configured
+// peak glow color.
+// ============================================================
+
+function scaleColorAlpha(colorStr, multiplier) {
+
+    const canvas =
+        document.createElement("canvas");
+
+    canvas.width = 1;
+    canvas.height = 1;
+
+    const ctx =
+        canvas.getContext("2d");
+
+    ctx.fillStyle =
+        colorStr;
+
+    const normalized =
+        ctx.fillStyle;
+
+
+    let r, g, b, a = 1;
+
+
+    if (normalized.startsWith("#")) {
+
+        const hex =
+            normalized.slice(1);
+
+        r = parseInt(hex.slice(0, 2), 16);
+        g = parseInt(hex.slice(2, 4), 16);
+        b = parseInt(hex.slice(4, 6), 16);
+
+        if (hex.length === 8) {
+
+            a = parseInt(hex.slice(6, 8), 16) / 255;
+
+        }
+
+    } else {
+
+        const match =
+            normalized.match(/rgba?\(([^)]+)\)/);
+
+        if (match) {
+
+            const parts =
+                match[1]
+                    .split(",")
+                    .map(function(part) {
+                        return parseFloat(part.trim());
+                    });
+
+            r = parts[0];
+            g = parts[1];
+            b = parts[2];
+
+            a = (parts.length > 3) ? parts[3] : 1;
+
+        }
+
+    }
+
+
+    const clampedMultiplier =
+        Math.max(0, Math.min(1, Number(multiplier)));
+
+    const newAlpha =
+        Math.max(0, Math.min(1, a * clampedMultiplier));
+
+
+    return (
+        "rgba(" +
+        r + ", " +
+        g + ", " +
+        b + ", " +
+        newAlpha +
+        ")"
+    );
+
+}
+
+
+// ============================================================
+// ERROR HANDLING
+// ============================================================
+
+function showConfigError(message) {
+
+    console.error(
+        "OBS Pointer configuration error:",
+        message
+    );
+
+
+    pointerIcon.removeAttribute("src");
+
+
+    // Errors always show as the classic blur glow, in red.
+
+    pointer.classList.remove("style-halo");
+    pointer.classList.add("style-blur");
+
+
+    pointer.style.setProperty(
+        "--glow-color",
+        "rgba(255, 60, 60, 0.9)"
+    );
+
+
+    pointer.style.setProperty(
+        "--glow-color-peak",
+        "rgba(255, 60, 60, 0.9)"
+    );
+
+
+    pointer.style.setProperty(
+        "--glow-color-trough",
+        "rgba(255, 60, 60, 0.9)"
+    );
+
+
+    pointer.style.setProperty(
+        "--glow-min",
+        "3px"
+    );
+
+
+    pointer.style.setProperty(
+        "--glow-max",
+        "10px"
+    );
+
+
+    pointer.style.setProperty(
+        "--glow-speed",
+        "2s"
+    );
+
+
+    pointer.style.setProperty(
+        "--glow-trough",
+        0.55
+    );
+
+}
+
+
+// ============================================================
+// APPLY POINTER CONFIGURATION
+// ============================================================
+
+function applyPointerConfig(config) {
+
+    pointerConfig = {
+
+        ...pointerConfig,
+
+        ...config
+
+    };
+
+
+    // --------------------------------------------------------
+    // Pointer dimensions
+    // --------------------------------------------------------
+
+    if (
+        Number.isFinite(
+            Number(pointerConfig.pointer_width)
+        )
+    ) {
+
+        pointer.style.width =
+            Number(pointerConfig.pointer_width) + "px";
+
+    }
+
+
+    if (
+        Number.isFinite(
+            Number(pointerConfig.pointer_height)
+        )
+    ) {
+
+        pointer.style.height =
+            Number(pointerConfig.pointer_height) + "px";
+
+    }
+
+
+    // --------------------------------------------------------
+    // Fade duration
+    // --------------------------------------------------------
+
+    if (
+        typeof pointerConfig.fade_duration === "string"
+    ) {
+
+        pointer.style.transition =
+            "opacity " +
+            pointerConfig.fade_duration +
+            " ease-in-out";
+
+    }
+
+
+    console.log(
+        "OBS Pointer:",
+        "pointer configuration:",
+        pointerConfig
+    );
+
+}
+
+
+// ============================================================
+// APPLY CURSOR CONFIGURATION
+// ============================================================
+
+function applyCursorConfig(config) {
+
+    try {
+
+        if (
+            !config ||
+            typeof config.active_cursor !== "string"
+        ) {
+
+            throw new Error(
+                'cursor configuration is missing a valid "active_cursor".'
+            );
+
+        }
+
+
+        // ----------------------------------------------------
+        // Load cursor
+        // ----------------------------------------------------
+
+        pointerIcon.src =
+            config.active_cursor;
+
+
+        // ----------------------------------------------------
+        // Determine glow configuration
+        // ----------------------------------------------------
+
+        const defaultGlow =
+            config.default_glow || {
+
+                color:
+                    "rgba(70, 190, 255, 0.8)",
+
+                min:
+                    "3px",
+
+                max:
+                    "10px",
+
+                speed:
+                    "2.6s",
+
+                trough:
+                    0.55,
+
+                trough_opacity:
+                    1,
+
+                style:
+                    "blur"
+
+            };
+
+
+        const cursorSettings =
+            config.cursors &&
+            config.cursors[
+                config.active_cursor
+            ];
+
+
+        const glow =
+            cursorSettings ||
+            defaultGlow;
+
+
+        // ----------------------------------------------------
+        // Apply glow style
+        //
+        // "style" is optional. If it isn't present -- which is
+        // true for every config written before this feature
+        // existed -- it defaults to "blur", so old configs
+        // keep behaving exactly as they did before.
+        // ----------------------------------------------------
+
+        const glowStyle =
+            glow.style ||
+            defaultGlow.style ||
+            "blur";
+
+
+        pointer.classList.toggle(
+            "style-halo",
+            glowStyle === "halo"
+        );
+
+
+        pointer.classList.toggle(
+            "style-blur",
+            glowStyle !== "halo"
+        );
+
+
+        // ----------------------------------------------------
+        // Apply glow values
+        // ----------------------------------------------------
+
+        pointer.style.setProperty(
+            "--glow-color",
+            glow.color ||
+            defaultGlow.color
+        );
+
+
+        pointer.style.setProperty(
+            "--glow-min",
+            glow.min ||
+            defaultGlow.min
+        );
+
+
+        pointer.style.setProperty(
+            "--glow-max",
+            glow.max ||
+            defaultGlow.max
+        );
+
+
+        pointer.style.setProperty(
+            "--glow-speed",
+            glow.speed ||
+            defaultGlow.speed
+        );
+
+
+        pointer.style.setProperty(
+            "--glow-trough",
+
+            (
+                glow.trough !== undefined &&
+                glow.trough !== null &&
+                glow.trough !== ""
+            )
+                ? glow.trough
+                : (
+                    defaultGlow.trough !== undefined
+                        ? defaultGlow.trough
+                        : 0.55
+                )
+
+        );
+
+
+        const troughOpacity =
+
+            (
+                glow.trough_opacity !== undefined &&
+                glow.trough_opacity !== null &&
+                glow.trough_opacity !== ""
+            )
+                ? Number(glow.trough_opacity)
+                : (
+                    defaultGlow.trough_opacity !== undefined
+                        ? Number(defaultGlow.trough_opacity)
+                        : 1
+                );
+
+
+        const peakColor =
+            glow.color ||
+            defaultGlow.color;
+
+
+        pointer.style.setProperty(
+            "--glow-color-peak",
+            peakColor
+        );
+
+
+        pointer.style.setProperty(
+            "--glow-color-trough",
+            scaleColorAlpha(peakColor, troughOpacity)
+        );
+
+
+        console.log(
+            "OBS Pointer:",
+            "loaded cursor:",
+            config.active_cursor
+        );
+
+
+        console.log(
+            "OBS Pointer:",
+            "glow configuration:",
+            glow,
+            "(style:",
+            glowStyle + ")"
+        );
+
+    }
+
+    catch (error) {
+
+        showConfigError(
+            error.message
+        );
+
+    }
+
+}
+
+
+// ============================================================
+// MOUSE POSITION
+// ============================================================
+
+let lastX = null;
+let lastY = null;
+
+let lastMovement = 0;
+
+
+// ============================================================
+// POINTER
+// ============================================================
+
+function movePointer(x, y) {
+
+    /*
+        tip_x / tip_y define where the actual cursor tip
+        exists inside the SVG.
+
+        Therefore the pointer container is positioned so
+        that this point lands exactly on the mouse position.
+    */
+
+    const tipX =
+        Number(pointerConfig.tip_x) || 0;
+
+    const tipY =
+        Number(pointerConfig.tip_y) || 0;
+
+
+    pointer.style.left =
+        (x - tipX) + "px";
+
+
+    pointer.style.top =
+        (y - tipY) + "px";
+
+}
+
+
+function showPointer() {
+
+    pointer.classList.add(
+        "visible"
+    );
+
+}
+
+
+function hidePointer() {
+
+    pointer.classList.remove(
+        "visible"
+    );
+
+}
+
+
+// ============================================================
+// WEBSOCKET
+// ============================================================
+
+const socket = new WebSocket(
+    "ws://127.0.0.1:8765"
+);
+
+
+socket.onopen = function() {
+
+    console.log(
+        "OBS Pointer:",
+        "connected to local pointer server."
+    );
+
+};
+
+
+socket.onerror = function(error) {
+
+    console.error(
+        "OBS Pointer:",
+        "WebSocket connection error.",
+        error
+    );
+
+};
+
+
+socket.onclose = function() {
+
+    console.warn(
+        "OBS Pointer:",
+        "connection to local pointer server closed."
+    );
+
+};
+
+
+socket.onmessage = function(event) {
+
+    try {
+
+        const data =
+            JSON.parse(event.data);
+
+
+        // ----------------------------------------------------
+        // Configuration
+        // ----------------------------------------------------
+
+        if (data.type === "config") {
+
+            if (data.pointer) {
+
+                applyPointerConfig(
+                    data.pointer
+                );
+
+            }
+
+
+            if (data.cursor) {
+
+                applyCursorConfig(
+                    data.cursor
+                );
+
+            }
+
+
+            return;
+
+        }
+
+
+        // ----------------------------------------------------
+        // Mouse coordinates
+        // ----------------------------------------------------
+
+        if (data.type === "mouse") {
+
+            /*
+                Only react when the mouse actually moved.
+            */
+
+            if (
+                data.x !== lastX ||
+                data.y !== lastY
+            ) {
+
+                movePointer(
+                    data.x,
+                    data.y
+                );
+
+
+                showPointer();
+
+
+                lastMovement =
+                    Date.now();
+
+
+                lastX =
+                    data.x;
+
+
+                lastY =
+                    data.y;
+
+            }
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "OBS Pointer:",
+            "invalid WebSocket message.",
+            error
+        );
+
+    }
+
+};
+
+
+// ============================================================
+// AUTOMATIC HIDE
+// ============================================================
+
+setInterval(function() {
+
+    const hideDelay =
+        Number(pointerConfig.hide_delay) || 5;
+
+
+    if (
+        pointer.classList.contains("visible") &&
+        Date.now() - lastMovement >
+            hideDelay * 1000
+    ) {
+
+        hidePointer();
+
+    }
+
+}, 100);
+
+
+</script>
+
+</body>
+</html>

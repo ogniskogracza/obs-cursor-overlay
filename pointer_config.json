@@ -1,0 +1,14 @@
+{
+    "pointer_width": 90,
+    "pointer_height": 90,
+
+    "fade_duration": "0.45s",
+
+    "hide_delay": 5.0,
+
+    "output_width": 1920,
+    "output_height": 1080,
+
+    "tip_x": 8,
+    "tip_y": 8
+}

@@ -1,0 +1,63 @@
+{
+    "active_cursor": "pointers/crystal_blue_sword.svg",
+
+    "default_glow": {
+        "color": "rgba(70, 190, 255, 0.8)",
+        "min": "3px",
+        "max": "10px",
+        "speed": "2.6s",
+        "trough": 0.55,
+	"trough_opacity": 0,
+        "style": "blur"
+    },
+
+    "cursors": {
+        "pointers/crystal_blue_sword.svg": {
+            "color": "rgba(70, 190, 255, 0.8)",
+            "min": "1px",
+            "max": "15px",
+            "speed": "4s",
+            "trough": 0.55,
+	    "trough_opacity": 0
+        },
+
+        "pointers/arrow.svg": {
+            "color": "rgba(70, 190, 255, 0.85)",
+            "min": "2px",
+            "max": "20px",
+            "speed": "4.2s",
+            "trough": 0.55,
+	    "trough_opacity": 0,
+	    "style": "blur"
+        },
+
+        "pointers/staff.svg": {
+            "color": "rgba(70, 190, 255, 0.8)",
+            "min": "3px",
+            "max": "9px",
+            "speed": "3s",
+            "trough": 0.55,
+	    "trough_opacity": 0
+        },
+
+        "pointers/skeleton_hand.svg": {
+            "color": "rgba(49, 239, 44, 0.9)",
+            "min": "3px",
+            "max": "150px",
+            "speed": "4s",
+            "trough": 0.55,
+	    "trough_opacity": 0,
+	    "style": "halo"
+        },
+
+	"pointers/skeleton_hand_blur.svg": {
+            "color": "rgba(49, 239, 44, 0.9)",
+            "min": "0px",
+            "max": "40px",
+            "speed": "4s",
+            "trough": 0.45,
+	    "trough_opacity": 0,
+	    "style": "blur"
+        }
+    }
+}

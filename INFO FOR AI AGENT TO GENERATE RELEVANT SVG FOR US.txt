@@ -1,0 +1,10 @@
+SVG pointer requirements
+File lives in pointers/
+viewBox="0 0 90 90"
+SVG's point/tip is at local (8,8)
+The SVG is designed to work as an <img>
+Transparent background
+No need to implement the pulsing glow inside the SVG — the HTML wrapper provides it
+The icon itself can contain its own gradients, highlights, filters, etc.
+The icon should occupy the remaining canvas naturally rather than being artificially centred
+Mouse position corresponds to (8,8), so the actual tip is exactly where you're pointing.
