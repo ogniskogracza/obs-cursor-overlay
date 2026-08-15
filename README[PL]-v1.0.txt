@@ -238,12 +238,12 @@ Cały projekt powinien być przechowywany razem w jednym folderze.
 
 Przykład:
 
-    OBS-Pointer/
+    OBS-Cursor-Overlay/
 
 
 Wewnątrz tego folderu:
 
-    OBS-Pointer/
+    OBS-Cursor-Overlay/
     |
     +-- pointer.py
     |
@@ -284,25 +284,25 @@ Pliki konfiguracyjne są zlokalizowane względem pointer.py.
 
 Na przykład cały projekt można umieścić w:
 
-    C:\OBS-Pointer\
+    C:\OBS-Cursor-Overlay\
 
 lub:
 
-    D:\Streaming\OBS-Pointer\
+    D:\Streaming\OBS-Cursor-Overlay\
 
 lub:
 
-    C:\Users\Someone\Desktop\OBS-Pointer\
+    C:\Users\Someone\Desktop\OBS-Cursor-Overlay\
 
 
 Na macOS:
 
-    /Users/Someone/OBS-Pointer/
+    /Users/Someone/OBS-Cursor-Overlay/
 
 
 Na Linuksie:
 
-    /home/someone/OBS-Pointer/
+    /home/someone/OBS-Cursor-Overlay/
 
 
 Cały folder można skopiować na inny komputer.
@@ -433,12 +433,15 @@ OBS CURSOR OVERLAY wymaga dwóch zewnętrznych pakietów Python:
 
 Otwórz Wiersz polecenia (Command Prompt).
 
-Przejdź do folderu OBS-Pointer.
+Przejdź do folderu OBS-Cursor-Overlay.
 
-Przykład:
+Aby sprawdzić gdzie aktualnie się znajdujesz i jakie foldery są ci dostepne wpisz:
 
-    cd C:\OBS-Pointer
+  dir
 
+Przykład aby przemieścić się do folderu pod konkretną ścieżką:
+
+    cd C:\OBS-Cursor-Overlay
 
 Następnie zainstaluj:
 
@@ -458,11 +461,15 @@ Alternatywnie:
 
 Otwórz Terminal.
 
-Przejdź do folderu OBS-Pointer.
+Przejdź do folderu OBS-Cursor-Overlay.
 
-Przykład:
+Aby sprawdzić listę folderów dostępnych w lokacji w której się znajdujesz wpisz:
 
-    cd /Users/Someone/OBS-Pointer
+    ls -la
+
+Przykład komendy która pozwoli ci dojść do poszukiwanego folderu:
+
+    cd /Users/Someone/OBS-Cursor-Overlay
 
 
 Zainstaluj:
@@ -476,11 +483,11 @@ Zainstaluj:
 
 Otwórz Terminal.
 
-Przejdź do folderu OBS-Pointer.
+Przejdź do folderu OBS-Cursor-Overlay.
 
 Przykład:
 
-    cd /home/someone/OBS-Pointer
+    cd /home/someone/OBS-Cursor-Overlay
 
 
 Zainstaluj:
@@ -507,7 +514,7 @@ Otwórz Wiersz polecenia.
 
 Przejdź do folderu projektu:
 
-    cd C:\OBS-Pointer
+    cd C:\OBS-Cursor-Overlay
 
 
 Uruchom:
@@ -523,7 +530,7 @@ Otwórz Terminal.
 
 Przejdź do folderu projektu:
 
-    cd /path/to/OBS-Pointer
+    cd /path/to/OBS-Cursor-Overlay
 
 
 Uruchom:
@@ -1594,7 +1601,7 @@ Skrypt powinien wygenerować komunikaty podobne do:
     C:\Users\USERNAME\AppData\Local\Programs\Python\Python310\python.exe
 
     Script:
-    C:\OBS-Pointer\pointer.py
+    C:\OBS-Cursor-Overlay\pointer.py
 
     OBS CURSOR OVERLAY: pointer.py started
 
@@ -1682,22 +1689,22 @@ Ustaw URL na lokalny plik pointer.html.
 
 Przykład dla Windows:
 
-    file:///C:/OBS-Pointer/pointer.html
+    file:///C:/OBS-Cursor-Overlay/pointer.html
 
 
 Kolejny przykład dla Windows:
 
-    file:///D:/Streaming/OBS-Pointer/pointer.html
+    file:///D:/Streaming/OBS-Cursor-Overlay/pointer.html
 
 
 Przykład dla macOS:
 
-    file:///Users/Someone/OBS-Pointer/pointer.html
+    file:///Users/Someone/OBS-Cursor-Overlay/pointer.html
 
 
 Przykład dla Linuksa:
 
-    file:///home/someone/OBS-Pointer/pointer.html
+    file:///home/someone/OBS-Cursor-Overlay/pointer.html
 
 
 Użyj poprawnej ścieżki dla swojego komputera.
@@ -2018,14 +2025,14 @@ Możesz przetestować to ręcznie.
 
 Windows:
 
-    cd C:\Your\Path\OBS-Pointer
+    cd C:\Your\Path\OBS-Cursor-Overlay
 
     python pointer.py
 
 
 macOS/Linux:
 
-    cd /Your/Path/OBS-Pointer
+    cd /Your/Path/OBS-Cursor-Overlay
 
     python3 pointer.py
 
@@ -2273,14 +2280,14 @@ Możesz przetestować serwer Python niezależnie.
 
 Windows:
 
-    cd C:\Folder\OBS-Pointer
+    cd C:\Folder\OBS-Cursor-Overlay
 
     python pointer.py
 
 
 macOS/Linux:
 
-    cd /Folder/OBS-Pointer
+    cd /Folder/OBS-Cursor-Overlay
 
     python3 pointer.py
 
@@ -2372,7 +2379,7 @@ Projekt został zaprojektowany, aby był przenośny.
 
 Skopiuj cały folder:
 
-    OBS-Pointer/
+    OBS-Cursor-Overlay/
 
 
 na inny komputer.
