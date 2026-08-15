@@ -1,5 +1,5 @@
 ======================================================================
-                         OBS POINTER
+                         OBS Cursor Overlay
               Niestandardowy kursor myszy dla OBS
 ======================================================================
 
@@ -17,10 +17,10 @@ Uwierzytelnianie: Wyłączone
 ======================================================================
 
 
-1. CZYM JEST OBS POINTER?
+1. CZYM JEST OBS CURSOR OVERLAY?
 ======================================================================
 
-OBS Pointer to niewielka lokalna aplikacja, która wyświetla
+OBS CURSOR OVERLAY to niewielka lokalna aplikacja, która wyświetla
 niestandardowy kursor myszy wewnątrz źródła typu Browser Source w OBS.
 
 Jest to przydatne podczas nagrywania lub streamowania:
@@ -67,7 +67,7 @@ Windows, macOS ani Linux.
 2. WSPARCIE WIELOPLATFORMOWE
 ======================================================================
 
-OBS Pointer został zaprojektowany do działania na:
+OBS CURSOR OVERLAY został zaprojektowany do działania na:
 
     Windows
     macOS
@@ -321,7 +321,7 @@ lokalizację pointer.html na nowym komputerze.
 5. INSTALACJA PYTHONA
 ======================================================================
 
-OBS Pointer wymaga Pythona w wersji 3.10 lub nowszej.
+OBS CURSOR OVERLAY wymaga Pythona w wersji 3.10 lub nowszej.
 
 Pythona można pobrać ze strony:
 
@@ -421,7 +421,7 @@ Zalecany jest Python 3.10 lub nowszy.
 7. INSTALACJA WYMAGANYCH PAKIETÓW PYTHON
 ======================================================================
 
-OBS Pointer wymaga dwóch zewnętrznych pakietów Python:
+OBS CURSOR OVERLAY wymaga dwóch zewnętrznych pakietów Python:
 
     pynput
     websockets
@@ -538,7 +538,7 @@ Uruchom:
 Powinieneś zobaczyć coś podobnego do:
 
     ========================================
-     OBS Pointer Mouse Server
+     OBS CURSOR OVERLAY Mouse Server
     ========================================
 
     Operating system: Windows
@@ -627,7 +627,7 @@ a:
 10. JAK DZIAŁA POZYCJA MYSZY
 ======================================================================
 
-OBS Pointer automatycznie wykrywa system operacyjny komputera.
+OBS CURSOR OVERLAY automatycznie wykrywa system operacyjny komputera.
 
 
 Ogólny proces przebiega następująco:
@@ -1339,7 +1339,7 @@ pointer_config.json.
 
 
 ======================================================================
-24. POŚWIATA SVG VS ZEWNĘTRZNA POŚWIATA OBS POINTER
+24. POŚWIATA SVG VS ZEWNĘTRZNA POŚWIATA OBS CURSOR OVERLAY
 ======================================================================
 
 Kursor może mieć dwa różne rodzaje poświaty.
@@ -1365,7 +1365,7 @@ poświatę bezpośrednio wokół ostrza.
 
 
 ----------------------------------------------------------------------
-24.2 ZEWNĘTRZNA POŚWIATA OBS POINTER
+24.2 ZEWNĘTRZNA POŚWIATA OBS CURSOR OVERLAY
 ----------------------------------------------------------------------
 
 pointer.html dodaje kolejną animowaną poświatę wokół kursora.
@@ -1587,7 +1587,7 @@ Wybierz:
 Skrypt powinien wygenerować komunikaty podobne do:
 
     ========================================
-     OBS Pointer
+     OBS CURSOR OVERLAY
     ========================================
 
     Python:
@@ -1596,7 +1596,7 @@ Skrypt powinien wygenerować komunikaty podobne do:
     Script:
     C:\OBS-Pointer\pointer.py
 
-    OBS Pointer: pointer.py started
+    OBS CURSOR OVERLAY: pointer.py started
 
 
 Oznacza to, że OBS pomyślnie uruchomił pointer.py.
@@ -1674,7 +1674,7 @@ Utwórz nowe źródło Browser Source.
 
 Nadaj mu nazwę, na przykład:
 
-    OBS Pointer
+    OBS CURSOR OVERLAY
 
 
 Ustaw URL na lokalny plik pointer.html.
@@ -1753,7 +1753,7 @@ Współrzędne wskaźnika opierają się na całym płótnie OBS.
 33. WAŻNE: DODAJ WSKAŹNIK TYLKO DO ODPOWIEDNICH SCEN
 ======================================================================
 
-Browser Source OBS Pointer jest nakładką (overlay).
+Browser Source OBS CURSOR OVERLAY jest nakładką (overlay).
 
 
 Jeśli Browser Source zostanie dodany do sceny pokazującej pulpit
@@ -1765,7 +1765,7 @@ Może to skutkować jednoczesnym pojawieniem się:
 
     normalnego kursora systemu operacyjnego
            +
-    kursora OBS Pointer
+    kursora OBS CURSOR OVERLAY
 
 
 w tym samym czasie.
@@ -1779,7 +1779,7 @@ PlayStation 5, sama konsola PS5 nie posiada kursora myszy
 komputera.
 
 
-Nakładka OBS Pointer zapewnia więc przydatny niestandardowy
+Nakładka OBS CURSOR OVERLAY zapewnia więc przydatny niestandardowy
 kursor wewnątrz sceny z rozgrywką.
 
 
@@ -1789,7 +1789,7 @@ normalny kursor systemu operacyjnego może również być widoczny.
 
 Proste rozwiązanie to:
 
-    Nie dodawaj Browser Source OBS Pointer do scen, w których
+    Nie dodawaj Browser Source OBS CURSOR OVERLAY do scen, w których
     chcesz pokazywać normalny kursor pulpitu komputera.
 
 
@@ -1800,7 +1800,7 @@ Na przykład:
         |
         +-- Gameplay
         +-- Camera
-        +-- OBS Pointer
+        +-- OBS CURSOR OVERLAY
 
 
     Scena - Desktop
@@ -1808,7 +1808,7 @@ Na przykład:
         +-- Desktop Capture
         +-- Camera
         |
-        +-- BRAK OBS Pointer
+        +-- BRAK OBS CURSOR OVERLAY
 
 
 Pozwala to używać niestandardowego wskaźnika tylko tam, gdzie
@@ -2309,7 +2309,7 @@ Po skonfigurowaniu wszystkiego, normalne użytkowanie jest proste.
        start_pointer.py.
 
 
-    3. Wybierz scenę zawierającą Browser Source OBS Pointer.
+    3. Wybierz scenę zawierającą Browser Source OBS CURSOR OVERLAY.
 
 
     4. Poruszaj myszą.
@@ -2807,7 +2807,7 @@ Rozszerzając projekt, staraj się zachować poniższe zasady:
 47. OGRANICZENIA / OCZEKIWANIA
 ======================================================================
 
-OBS Pointer został zaprojektowany przede wszystkim dla
+OBS CURSOR OVERLAY został zaprojektowany przede wszystkim dla
 standardowego przepływu pracy OBS, w którym Browser Source oraz
 płótno OBS używają tej samej skonfigurowanej rozdzielczości
 wyjściowej.
@@ -2841,17 +2841,17 @@ Aplikacja automatycznie skaluje współrzędne.
 Normalny kursor myszy systemu operacyjnego NIE jest ukrywany.
 
 
-OBS Pointer jest dodatkowym wizualnym kursorem renderowanym przez
+OBS CURSOR OVERLAY jest dodatkowym wizualnym kursorem renderowanym przez
 OBS.
 
 
 Dlatego jeśli leżący u podstaw pulpit jest widoczny w streamie,
-zarówno normalny kursor systemu operacyjnego, jak i OBS Pointer
+zarówno normalny kursor systemu operacyjnego, jak i OBS CURSOR OVERLAY
 mogą być potencjalnie widoczne jednocześnie.
 
 
 Dla scen, w których jest to niepożądane, po prostu nie dodawaj do
-tej sceny Browser Source OBS Pointer.
+tej sceny Browser Source OBS CURSOR OVERLAY.
 
 
 ======================================================================
@@ -2876,7 +2876,7 @@ następująco:
       |
       +---- Audio
       |
-      +---- OBS Pointer
+      +---- OBS CURSOR OVERLAY
       |
       v
     YouTube / Twitch / Nagranie
@@ -2889,7 +2889,7 @@ OBS.
 Sama konsola PS5 nie dostarcza kursora myszy komputera.
 
 
-OBS Pointer odczytuje pozycję myszy komputera i tworzy wizualny
+OBS CURSOR OVERLAY odczytuje pozycję myszy komputera i tworzy wizualny
 kursor wewnątrz sceny OBS.
 
 
@@ -2910,7 +2910,7 @@ Przydatna konfiguracja OBS może wyglądać tak:
         Camera
         Game Audio
         Microphone
-        OBS Pointer
+        OBS CURSOR OVERLAY
 
 
     Scena - Camera
@@ -2926,7 +2926,7 @@ Przydatna konfiguracja OBS może wyglądać tak:
         Microphone
 
 
-OBS Pointer nie musi być dołączony do każdej sceny.
+OBS CURSOR OVERLAY nie musi być dołączony do każdej sceny.
 
 
 Jest to szczególnie ważne w przypadku scen z pulpitem, ponieważ
@@ -2937,7 +2937,7 @@ normalny kursor systemu operacyjnego może być tam już widoczny.
 50. FILOZOFIA PROJEKTU
 ======================================================================
 
-OBS Pointer został celowo zaprojektowany tak, aby pozostać mały i
+OBS CURSOR OVERLAY został celowo zaprojektowany tak, aby pozostać mały i
 prosty.
 
 
