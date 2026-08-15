@@ -1,7 +1,7 @@
-OBS Pointer
+OBS Cursor Overlay
 Copyright (c) 2026 Rafal Modzelewski (ogniskogracza@gmail.com)
 
-Required Notice: Copyright Rafal Modzelewski (https://github.com/ogniskogracza) -- OBS Pointer
+Required Notice: Copyright Rafal Modzelewski (https://github.com/ogniskogracza) -- OBS Cursor Overlay
 
 This software is licensed under the PolyForm Noncommercial License
 1.0.0. The full, unmodified text of that license follows below.
