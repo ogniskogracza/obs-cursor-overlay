@@ -1,5 +1,5 @@
 ======================================================================
-                         OBS POINTER
+                         OBS CURSOR OVERLAY
                  Custom Mouse Cursor for OBS
 ======================================================================
 
@@ -17,10 +17,10 @@ Authentication: Disabled
 ======================================================================
 
 
-1. WHAT IS OBS POINTER?
+1. WHAT IS OBS CURSOR OVERLAY?
 ======================================================================
 
-OBS Pointer is a small local application that displays a custom mouse
+OBS CURSOR OVERLAY is a small local application that displays a custom mouse
 cursor inside an OBS Browser Source.
 
 It is useful when recording or streaming:
@@ -68,7 +68,7 @@ macOS or Linux mouse cursor.
 2. CROSS-PLATFORM SUPPORT
 ======================================================================
 
-OBS Pointer is designed to work on:
+OBS CURSOR OVERLAY is designed to work on:
 
     Windows
     macOS
@@ -237,12 +237,12 @@ The entire project should be kept together in one folder.
 
 Example:
 
-    OBS-Pointer/
+    OBS-Cursor-Overlay/
 
 
 Inside that folder:
 
-    OBS-Pointer/
+    OBS-Cursor-Overlay/
     |
     +-- pointer.py
     |
@@ -283,25 +283,25 @@ The configuration files are located relative to pointer.py.
 
 For example, the complete project can be placed at:
 
-    C:\OBS-Pointer\
+    C:\OBS-Cursor-Overlay\
 
 or:
 
-    D:\Streaming\OBS-Pointer\
+    D:\Streaming\OBS-Cursor-Overlay\
 
 or:
 
-    C:\Users\Someone\Desktop\OBS-Pointer\
+    C:\Users\Someone\Desktop\OBS-Cursor-Overlay\
 
 
 On macOS:
 
-    /Users/Someone/OBS-Pointer/
+    /Users/Someone/OBS-Cursor-Overlay/
 
 
 On Linux:
 
-    /home/someone/OBS-Pointer/
+    /home/someone/OBS-Cursor-Overlay/
 
 
 The complete folder can be copied to another computer.
@@ -320,7 +320,7 @@ of pointer.html on the new computer.
 5. INSTALLING PYTHON
 ======================================================================
 
-OBS Pointer requires Python 3.10 or newer.
+OBS CURSOR OVERLAY requires Python 3.10 or newer.
 
 Python can be downloaded from:
 
@@ -419,7 +419,7 @@ Python 3.10 or newer is recommended.
 7. INSTALLING REQUIRED PYTHON PACKAGES
 ======================================================================
 
-OBS Pointer requires two external Python packages:
+OBS CURSOR OVERLAY requires two external Python packages:
 
     pynput
     websockets
@@ -431,11 +431,11 @@ OBS Pointer requires two external Python packages:
 
 Open Command Prompt.
 
-Go to the OBS-Pointer folder.
+Go to the OBS-Cursor-Overlay folder.
 
 Example:
 
-    cd C:\OBS-Pointer
+    cd C:\OBS-Cursor-Overlay
 
 
 Then install:
@@ -456,11 +456,11 @@ Alternatively:
 
 Open Terminal.
 
-Go to the OBS-Pointer folder.
+Go to the OBS-Cursor-Overlay folder.
 
 Example:
 
-    cd /Users/Someone/OBS-Pointer
+    cd /Users/Someone/OBS-Cursor-Overlay
 
 
 Install:
@@ -474,11 +474,11 @@ Install:
 
 Open Terminal.
 
-Go to the OBS-Pointer folder.
+Go to the OBS-Cursor-Overlay folder.
 
 Example:
 
-    cd /home/someone/OBS-Pointer
+    cd /home/someone/OBS-Cursor-Overlay
 
 
 Install:
@@ -505,7 +505,7 @@ Open Command Prompt.
 
 Go to the project folder:
 
-    cd C:\OBS-Pointer
+    cd C:\OBS-Cursor-Overlay
 
 
 Run:
@@ -521,7 +521,7 @@ Open Terminal.
 
 Go to the project folder:
 
-    cd /path/to/OBS-Pointer
+    cd /path/to/OBS-Cursor-Overlay
 
 
 Run:
@@ -536,7 +536,7 @@ Run:
 You should see something similar to:
 
     ========================================
-     OBS Pointer Mouse Server
+     OBS CURSOR OVERLAY Mouse Server
     ========================================
 
     Operating system: Windows
@@ -624,7 +624,7 @@ No external server is required.
 10. HOW THE MOUSE POSITION WORKS
 ======================================================================
 
-OBS Pointer automatically detects the computer's operating system.
+OBS CURSOR OVERLAY automatically detects the computer's operating system.
 
 
 The general process is:
@@ -994,7 +994,7 @@ After changing cursor_config.json:
 
     2. Return to OBS.
 
-    3. Right-click the OBS Pointer Browser Source.
+    3. Right-click the OBS CURSOR OVERLAY Browser Source.
 
     4. Select:
 
@@ -1334,7 +1334,7 @@ pointer_config.json.
 
 
 ======================================================================
-24. SVG GLOW VS OUTER OBS POINTER GLOW
+24. SVG GLOW VS OUTER OBS CURSOR OVERLAY GLOW
 ======================================================================
 
 A cursor can have two different types of glow.
@@ -1360,7 +1360,7 @@ around its blade.
 
 
 ----------------------------------------------------------------------
-24.2 OUTER OBS POINTER GLOW
+24.2 OUTER OBS CURSOR OVERLAY GLOW
 ----------------------------------------------------------------------
 
 pointer.html adds another animated glow around the cursor.
@@ -1579,16 +1579,16 @@ Select:
 The script should produce messages similar to:
 
     ========================================
-     OBS Pointer
+     OBS CURSOR OVERLAY
     ========================================
 
     Python:
     C:\Users\USERNAME\AppData\Local\Programs\Python\Python310\python.exe
 
     Script:
-    C:\OBS-Pointer\pointer.py
+    C:\OBS-Cursor-Overlay\pointer.py
 
-    OBS Pointer: pointer.py started
+    OBS CURSOR OVERLAY: pointer.py started
 
 
 This means OBS successfully started pointer.py.
@@ -1664,7 +1664,7 @@ Create a new Browser Source.
 
 Give it a name such as:
 
-    OBS Pointer
+    OBS CURSOR OVERLAY
 
 
 Set the URL to the local pointer.html file.
@@ -1672,22 +1672,22 @@ Set the URL to the local pointer.html file.
 
 Windows example:
 
-    file:///C:/OBS-Pointer/pointer.html
+    file:///C:/OBS-Cursor-Overlay/pointer.html
 
 
 Another Windows example:
 
-    file:///D:/Streaming/OBS-Pointer/pointer.html
+    file:///D:/Streaming/OBS-Cursor-Overlay/pointer.html
 
 
 macOS example:
 
-    file:///Users/Someone/OBS-Pointer/pointer.html
+    file:///Users/Someone/OBS-Cursor-Overlay/pointer.html
 
 
 Linux example:
 
-    file:///home/someone/OBS-Pointer/pointer.html
+    file:///home/someone/OBS-Cursor-Overlay/pointer.html
 
 
 Use the correct path for your computer.
@@ -1744,7 +1744,7 @@ The pointer coordinates are based on the complete OBS canvas.
 33. IMPORTANT: ADD THE POINTER ONLY TO RELEVANT SCENES
 ======================================================================
 
-The OBS Pointer Browser Source is an overlay.
+The OBS CURSOR OVERLAY Browser Source is an overlay.
 
 
 If the Browser Source is added to a scene showing the computer's
@@ -1755,7 +1755,7 @@ This can result in:
 
     normal OS cursor
            +
-    OBS Pointer cursor
+    OBS CURSOR OVERLAY cursor
 
 
 appearing at the same time.
@@ -1768,7 +1768,7 @@ For example, if OBS is being used to stream PlayStation 5 gameplay,
 the PS5 itself does not have the computer's mouse cursor.
 
 
-The OBS Pointer overlay therefore provides a useful custom cursor
+The OBS CURSOR OVERLAY overlay therefore provides a useful custom cursor
 inside the gameplay scene.
 
 
@@ -1778,7 +1778,7 @@ the normal operating-system cursor may also be visible.
 
 The simple solution is:
 
-    Do not add the OBS Pointer Browser Source to scenes where you
+    Do not add the OBS CURSOR OVERLAY Browser Source to scenes where you
     want to display the computer's normal desktop cursor.
 
 
@@ -1789,7 +1789,7 @@ For example:
         |
         +-- Gameplay
         +-- Camera
-        +-- OBS Pointer
+        +-- OBS CURSOR OVERLAY
 
 
     Scene - Desktop
@@ -1797,7 +1797,7 @@ For example:
         +-- Desktop Capture
         +-- Camera
         |
-        +-- NO OBS Pointer
+        +-- NO OBS CURSOR OVERLAY
 
 
 This allows the custom pointer to be used only where it is useful.
@@ -1869,7 +1869,7 @@ Steps:
     4. Return to OBS.
 
 
-    5. Right-click the OBS Pointer Browser Source.
+    5. Right-click the OBS CURSOR OVERLAY Browser Source.
 
 
     6. Select:
@@ -2004,14 +2004,14 @@ You can test manually.
 
 Windows:
 
-    cd C:\Your\Path\OBS-Pointer
+    cd C:\Your\Path\OBS-Cursor-Overlay
 
     python pointer.py
 
 
 macOS/Linux:
 
-    cd /Your/Path/OBS-Pointer
+    cd /Your/Path/OBS-Cursor-Overlay
 
     python3 pointer.py
 
@@ -2255,14 +2255,14 @@ You can test the Python server independently.
 
 Windows:
 
-    cd C:\Folder\OBS-Pointer
+    cd C:\Folder\OBS-Cursor-Overlay
 
     python pointer.py
 
 
 macOS/Linux:
 
-    cd /Folder/OBS-Pointer
+    cd /Folder/OBS-Cursor-Overlay
 
     python3 pointer.py
 
@@ -2290,7 +2290,7 @@ Once everything has been configured, normal usage is simple.
        start_pointer.py.
 
 
-    3. Select the scene containing the OBS Pointer Browser Source.
+    3. Select the scene containing the OBS CURSOR OVERLAY Browser Source.
 
 
     4. Move the mouse.
@@ -2353,7 +2353,7 @@ The project is designed to be portable.
 
 Copy the entire folder:
 
-    OBS-Pointer/
+    OBS-Cursor-Overlay/
 
 
 to the other computer.
@@ -2781,7 +2781,7 @@ When extending the project, try to preserve these principles:
 47. LIMITATIONS / EXPECTATIONS
 ======================================================================
 
-OBS Pointer is designed primarily for a standard OBS workflow where
+OBS CURSOR OVERLAY is designed primarily for a standard OBS workflow where
 the Browser Source and the OBS canvas use the same configured output
 resolution.
 
@@ -2814,11 +2814,11 @@ The application automatically scales the coordinates.
 The normal operating-system mouse cursor is NOT hidden.
 
 
-OBS Pointer is an additional visual cursor rendered by OBS.
+OBS CURSOR OVERLAY is an additional visual cursor rendered by OBS.
 
 
 Therefore, if the underlying desktop is visible in the stream, both
-the normal OS cursor and the OBS Pointer may potentially be visible.
+the normal OS cursor and the OBS CURSOR OVERLAY may potentially be visible.
 
 
 For scenes where this is undesirable, simply do not add the OBS
@@ -2846,7 +2846,7 @@ A typical PlayStation 5 streaming setup may look like:
       |
       +---- Audio
       |
-      +---- OBS Pointer
+      +---- OBS CURSOR OVERLAY
       |
       v
     YouTube / Twitch / Recording
@@ -2858,7 +2858,7 @@ The computer mouse is connected to the computer running OBS.
 The PS5 itself does not provide the computer's mouse cursor.
 
 
-OBS Pointer reads the computer mouse position and creates a visual
+OBS CURSOR OVERLAY reads the computer mouse position and creates a visual
 cursor inside the OBS scene.
 
 
@@ -2879,7 +2879,7 @@ A useful OBS setup might be:
         Camera
         Game Audio
         Microphone
-        OBS Pointer
+        OBS CURSOR OVERLAY
 
 
     Scene - Camera
@@ -2895,7 +2895,7 @@ A useful OBS setup might be:
         Microphone
 
 
-The OBS Pointer does not need to be included in every scene.
+The OBS CURSOR OVERLAY does not need to be included in every scene.
 
 
 This is particularly important for desktop scenes because the normal
@@ -2906,7 +2906,7 @@ operating-system cursor may already be visible there.
 50. PROJECT PHILOSOPHY
 ======================================================================
 
-OBS Pointer is intentionally designed to remain small and simple.
+OBS CURSOR OVERLAY is intentionally designed to remain small and simple.
 
 
 It does not require:
